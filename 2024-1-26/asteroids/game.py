@@ -81,6 +81,8 @@ class Asteroids:
         ### Check if the player is colliding with one of the asteroids 
           # if its is, set it to None 
           # you can use .collides_with(game_obj) to check if they are colliding 
+
+            
         for asteroid in self.asteroids:
             if self.spaceship and self.spaceship.collides_with(asteroid):
                 self.spaceship = None 
@@ -88,9 +90,16 @@ class Asteroids:
         ### TODO 2 
           # Check if a bullet is colliding with one of the asteroids 
           # if it is, remove it 
+        
+                        
+        ### TODO 4 
+          # after an asteroid is removed, increment the score. give bonus points based 
+          # on the size of the asteroid 
+                
         for bullet in self.bullets:
             for asteroid in self.asteroids:
                 if bullet.collides_with(asteroid):
+                    self.score +=1
                     self.asteroids.remove(asteroid)
                     self.bullets.remove(bullet)
                 
@@ -99,9 +108,9 @@ class Asteroids:
           # so instead of removing the asteroid, spawn 2 more at its old location
           # go to GameObject.py
                 
-        ### TODO 4 
-          # after an asteroid is removed, increment the score. give bonus points based 
-          # on the size of the asteroid 
+        
+                    
+
 
     def _draw(self):
         self.screen.blit(self.background, (0,0))
