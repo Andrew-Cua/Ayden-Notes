@@ -35,10 +35,16 @@ public class Main {
             System.out.print(c[i] + ", ");
         }
 
+        int[] d = functions.addAt(a,6, 2);
         System.out.println("");
-        int[] d = functions.addAt(a, 6, 0);
         for(int i = 0; i < d.length; i++) {
             System.out.print(d[i] + ", ");
+        }
+
+        int[] e = functions.removeAt(d,2);
+        System.out.println("");
+        for(int i = 0; i < e.length; i++) {
+            System.out.print(e[i] + ", ");
         }
     }
 }
