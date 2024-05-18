@@ -1,32 +1,32 @@
 package com.ayden;
 
-public class LinkedListNode {
-    private int data;
-    private LinkedListNode nextNode;
+public class LinkedListNode<T> {
+    private T data;
+    private LinkedListNode<T> nextNode;
 
     public LinkedListNode() {
-        data = 0;
+        data = null;
         nextNode = null;
     }
 
-    public LinkedListNode(int data, LinkedListNode node) {
+    public LinkedListNode(T data, LinkedListNode<T> node) {
         this.data  = data;
         this.nextNode = node;
     }
 
-    public LinkedListNode(int data) {
+    public LinkedListNode(T data) {
         this.data = data;
     }
 
-    public void setNextNode(LinkedListNode nextNode) {
+    public void setNextNode(LinkedListNode<T> nextNode) {
         this.nextNode = nextNode;
     }
 
-    public LinkedListNode getNextNode() {
+    public LinkedListNode<T> getNextNode() {
         return nextNode;
     }
 
-    public int getData() {
+    public T getData() {
         return data;
     }
 }

@@ -2,30 +2,66 @@ package com.ayden;
 
 
 import javax.swing.event.ListDataListener;
+import java.util.Locale;
+import java.util.function.Consumer;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        List list = new ArrayList();
+        List<String> list = new ArrayList<>();
 
-        for(int i = 0; i<25; i++) {
-            list.append(i);
+        list.append("Ayden");
+        list.append("Andrew");
+
+        list.map((String s) -> {
+            String cat = s + " Hello";
+            System.out.println(cat.toUpperCase());
+        });
+
+        List<Integer> numList = new ArrayList<>();
+
+        numList.append(1);
+        numList.append(2);
+
+        for(int i = 3; i < 30; i++) {
+            numList.append(i);
         }
 
-        System.out.println(list.has(30));
-        list.printList();
+        numList.map((Integer c) -> System.out.println(c));
 
 
-        List list2 = new ArrayList();
-        int[] arr = {1,2,3,4,5,6,7,8,9,0};
-        list2.copyArray(arr);
-        list2.printList();
+        ArrayList<Integer> numArr = (ArrayList<Integer>)numList;
+        ArrayList<Integer> evens = numArr.filter((Integer c) -> {
+            return true;
+        });
 
-        List list3 = new LinkedList();
-        list3.copyArray(arr);
+        evens.map(System.out::println);
 
-        list3.printList();
+
+        List<List<String>> l = new ArrayList<>();
+        l.append(list);
+
+        List<String> s = new ArrayList<>();
+        s.append("Harrison");
+        s.append("Elijah");
+
+        l.append(s);
+
+        /**
+         * l1: [1,2,3,4,5]
+         * l2: [6,7,8,9,10]
+         *
+         * l3: [1,2,3,4,5,6,7,8,9,10]
+         * l4: [[1,2,3,4,5], [6,7,8,9,10]]
+         * */
+
+        for(int i = 0; i < l.getSize(); i++) {
+            List<String> temp = l.get(i);
+            temp.printList();
+        }
+
+
 
 
     }

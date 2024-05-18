@@ -1,5 +1,8 @@
 package com.ayden;
 
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
 /***
  * it can append things
  * it has negative positions
@@ -7,32 +10,32 @@ package com.ayden;
  * You can check if something is inside the list
  * taking a certain position of the list
  */
-public class ArrayList extends List{
+public class ArrayList<T> extends List<T> {
 
     // member variables
-    private int[] array = new int[9];
+    private T[] array = (T[]) new Object[9];
     public ArrayList() {
 
     }
-    public ArrayList(int[] array) {
+    public ArrayList(T[] array) {
         this.array = array;
     }
 
     @Override
-    public void append(int num) {
+    public void append(T t) {
         if (size < array.length) {
-            array[size] = num;
+            array[size] = t;
             size++;
             return;
         }
 
         System.out.println("Making new array");
-        int[] temp = new int[array.length+10];
+        T[] temp = (T[])new Object[array.length+10];
         int last_pos = array.length;
         for(int i = 0; i <array.length; i++){
             temp[i] = array[i];
         }
-        temp[last_pos] = num;
+        temp[last_pos] = t;
 
         array = temp;
 
@@ -54,7 +57,7 @@ public class ArrayList extends List{
      *  If pos is negative, get the number from the back of the list
      **/
     @Override
-    public int get(int pos){
+    public T get(int pos){
         if(pos<0){
             int negativeSize = size + pos;
             if (negativeSize < 0) {
@@ -90,7 +93,7 @@ public class ArrayList extends List{
     // a = 10;
     // check if 10 is in the array
     @Override
-    public boolean has(int a){
+    public boolean has(T a){
         for(int i=0; i<size;i++){
             if (array[i] == a){
                 return true;
@@ -103,6 +106,34 @@ public class ArrayList extends List{
 
     private void superSecret() {
         System.out.println("No one should be able to call me");
+    }
+
+    /**
+     * Iterate through every element.
+     * Appplys a function to every element
+     */
+    public void map(Consumer<T> c) {
+        for(int i = 0; i < size; i++) {
+            c.accept(array[i]);
+        }
+    }
+
+
+    /* Go over every element,
+    * if it passes the predicate, add it to the new arraylist
+    * otherwise, nothing
+    *
+    * return the new arrayList
+    * */
+    public ArrayList<T> filter(Predicate<T> p) {
+        ArrayList<T> arr = new ArrayList<>();
+        for(int i = 0; i <size; i++){
+            if(p.test(get(i))) {
+                arr.append(get(i));
+            }
+        }
+
+        return arr;
     }
 
 

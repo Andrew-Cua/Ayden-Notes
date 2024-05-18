@@ -1,21 +1,23 @@
 package com.ayden;
 
-public class LinkedList extends List {
-    private LinkedListNode head = null;
+import java.util.function.Consumer;
+
+public class LinkedList<T> extends List<T> {
+    private LinkedListNode<T> head = null;
     @Override
-    public void append(int num) {
+    public void append(T t) {
         // You add another node
         // You set the value of the new node
         // You connect it to the last node
 
         if (head == null) {
-            head = new LinkedListNode(num);
+            head = new LinkedListNode<T>(t);
             size++;
             return;
         }
 
-        LinkedListNode n = new LinkedListNode(num);
-        LinkedListNode temporary = head;
+        LinkedListNode<T> n = new LinkedListNode<T>(t);
+        LinkedListNode<T> temporary = head;
         // how do we get the last node
         while(temporary.getNextNode() != null) {
             temporary = temporary.getNextNode();
@@ -27,8 +29,8 @@ public class LinkedList extends List {
     }
 
     @Override
-    public int get(int pos) {
-        LinkedListNode tent = head;
+    public T get(int pos) {
+        LinkedListNode<T> tent = head;
         for(int i = 0;i < pos; i++) {
             tent = tent.getNextNode();
         }
@@ -38,7 +40,7 @@ public class LinkedList extends List {
 
     @Override
     public void remove(int pos) {
-        LinkedListNode before_node = head;
+        LinkedListNode<T> before_node = head;
             for(int i = 0; i<pos-1; i++){
                 before_node = before_node.getNextNode();
             }
@@ -50,14 +52,20 @@ public class LinkedList extends List {
     }
 
     @Override
-    public boolean has(int num) {
-        LinkedListNode tent = head;
+    public boolean has(T t) {
+        LinkedListNode<T> tent = head;
         while(tent != null){
-            if(tent.getData() == num){
+            if(tent.getData() == t){
                 return true;
             }
+
+            tent = tent.getNextNode();
         }
 
         return false;
+    }
+
+    public void map(Consumer<T> c) {
+
     }
 }

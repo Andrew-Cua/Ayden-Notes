@@ -1,6 +1,8 @@
 package com.ayden;
 
-public abstract class List {
+import java.util.function.Consumer;
+
+public abstract class List<T> {
     protected int size = 0;
 
     public List() {
@@ -8,10 +10,12 @@ public abstract class List {
     }
 
 
-    public abstract void append(int num);
-    public abstract int get(int pos);
+    public abstract void append(T t);
+    public abstract T get(int pos);
     public abstract void remove(int pos);
-    public abstract boolean has(int num);
+    public abstract boolean has(T  t);
+
+    public abstract void map(Consumer<T> c);
 
     public int getSize() {
         return size;
@@ -25,7 +29,7 @@ public abstract class List {
         System.out.println("");
     }
 
-    public void copyArray(int[] arr) {
+    public void copyArray(T[] arr) {
         for(int i = 0; i < arr.length; i++) {
             append(arr[i]);
         }
