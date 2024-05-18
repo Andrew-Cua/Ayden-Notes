@@ -1,14 +1,18 @@
 package com.ayden;
 
+<<<<<<< HEAD
 
 import javax.swing.event.ListDataListener;
 import java.util.Locale;
 import java.util.function.Consumer;
 
+=======
+>>>>>>> parent of 291a868 (LinkedLists and Polymorphism)
 public class Main {
 
 
     public static void main(String[] args) {
+<<<<<<< HEAD
         List<String> list = new ArrayList<>();
 
         list.append("Ayden");
@@ -64,6 +68,11 @@ public class Main {
 
 
 
+=======
+        Car car = new Car(4, "red", 4);
+        car.drive();
+        System.out.println(car.getWheels());
+>>>>>>> parent of 291a868 (LinkedLists and Polymorphism)
     }
 }
 
